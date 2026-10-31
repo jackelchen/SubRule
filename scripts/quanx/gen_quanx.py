@@ -130,8 +130,10 @@ def main():
         data = json.load(f)
 
     skip = set(data.get("skip_files", []))
+    # 用文件名显式排序：Windows 上 Path 排序会忽略大小写，与 CI(Linux) 结果不一致
     files = sorted(
-        p for p in CLASH_DIR.glob("*.list") if p.name not in skip
+        (p for p in CLASH_DIR.glob("*.list") if p.name not in skip),
+        key=lambda p: p.name,
     )
     if not files:
         print(f"error: no *.list files in {CLASH_DIR}", file=sys.stderr)
