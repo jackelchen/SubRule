@@ -121,7 +121,7 @@ def update_policy_map(data, stems: list[str]) -> None:
 
 def main():
     if not CLASH_DIR.is_dir():
-        print(f"error: {CLASH_DIR} not found", file=sys.stderr)
+        print(f"error: {CLASH_DIR} 不存在", file=sys.stderr)
         sys.exit(1)
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -136,7 +136,7 @@ def main():
         key=lambda p: p.name,
     )
     if not files:
-        print(f"error: no *.list files in {CLASH_DIR}", file=sys.stderr)
+        print(f"error: {CLASH_DIR} 下没有 .list 文件", file=sys.stderr)
         sys.exit(1)
 
     stems = sorted(p.stem for p in files if not p.stem.startswith("0"))
@@ -179,8 +179,8 @@ def main():
 
     OUTPUT_FILE.write_text("\n".join(out) + "\n", encoding="utf-8")
     print(
-        f"wrote {OUTPUT_FILE} | files={len(files)} "
-        f"rules={len(seen)} dup_dropped={dup} skipped={skip}"
+        f"已生成 {OUTPUT_FILE.name} 于 output/"
+        f"（文件 {len(files)} 个，规则 {len(seen)} 条，去重 {dup} 条，跳过 {skip} 条）"
     )
 
 
