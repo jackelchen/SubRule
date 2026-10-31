@@ -35,9 +35,9 @@ CDN_BASE = f"https://cdn.jsdelivr.net/gh/{GITHUB_OWNER}/{GITHUB_REPO}@{BRANCH}/f
 
 # 每个 list 对应的策略组模板（成员结构沿用现有规则）
 POLICY_GROUP_TEMPLATE = (
-    "custom_proxy_group={name}`select`[]🚀 地区选择`[]🇯🇵 日本节点`[]"
-    "🇭🇰 香港节点`[]🇨🇳 台湾节点`[]🇸🇬 新加坡节点`[]🇺🇲 美国节点`[]"
-    "🏳️‍🌈 其他节点`[]🚀 手动切换`[]DIRECT"
+    "custom_proxy_group={name}`select`[]🚀 地区选择`[]🇯🇵 日本节点-自动`[]"
+    "🇭🇰 香港节点-自动`[]🇹🇼 台湾节点-自动`[]🇸🇬 新加坡节点-自动`[]🇺🇲 美国节点-自动`[]🇰🇷 韩国节点-自动`[]"
+    "🇺🇳 其他节点-自动`[]🚀 手动切换`[]DIRECT"
 )
 
 RULESET_BEGIN = "# ===== AUTO ruleset BEGIN ====="
