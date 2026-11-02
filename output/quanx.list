@@ -1163,10 +1163,7 @@ HOST-SUFFIX,s.qd.qingtingfm.com,reject
 # QQ
 HOST-KEYWORD,omgmtaw,reject
 HOST,adsmind.apdcdn.tc.qq.com,reject
-HOST,adsmind.gdtimg.com,reject
 HOST,adsmind.tc.qq.com,reject
-HOST,pgdt.gtimg.cn,reject
-HOST,pgdt.gtimg.com,reject
 HOST,pgdt.ugdtimg.com,reject
 HOST,splashqqlive.gtimg.com,reject
 HOST,wa.gtimg.com,reject
@@ -8591,6 +8588,9 @@ HOST-SUFFIX,dmhy.org,冻鳗
 HOST-SUFFIX,nyaa.si,冻鳗
 HOST-SUFFIX,ani.rip,冻鳗
 HOST-SUFFIX,bgm.tv,冻鳗
+HOST-SUFFIX,copy3000.com,冻鳗
+HOST-SUFFIX,manhuagui.com,冻鳗
+HOST-SUFFIX,mangafunb.fun,冻鳗
 
 # ===== 0ban.list =====
 # 禁连
