@@ -8601,6 +8601,8 @@ HOST-SUFFIX,updates-http.cdn-apple.com,reject
 HOST-SUFFIX,xp.apple.com,reject
 #原子时钟app广告
 HOST-SUFFIX,doubleclick-cn.net,reject
+#农行
+HOST-SUFFIX,msmp.abchina.com.cn,reject
 
 # ===== 0direct.list =====
 # 直连
