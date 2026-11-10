@@ -8591,6 +8591,7 @@ HOST-SUFFIX,bgm.tv,冻鳗
 HOST-SUFFIX,copy3000.com,冻鳗
 HOST-SUFFIX,manhuagui.com,冻鳗
 HOST-SUFFIX,mangafunb.fun,冻鳗
+HOST-SUFFIX,hamreus.com,冻鳗
 
 # ===== 0ban.list =====
 # 禁连
@@ -8603,6 +8604,9 @@ HOST-SUFFIX,xp.apple.com,reject
 HOST-SUFFIX,doubleclick-cn.net,reject
 #农行
 HOST-SUFFIX,msmp.abchina.com.cn,reject
+#起点
+HOST-SUFFIX,pgdt.gdtimg.com,reject
+HOST-SUFFIX,pgdt.gtimg.cn,reject
 
 # ===== 0direct.list =====
 # 直连
@@ -10563,6 +10567,13 @@ IP-CIDR,69.195.160.0/19,自动选择,no-resolve
 HOST,uplaypc-s-ubisoft.cdn.ubi.com,自动选择
 HOST-SUFFIX,ubi.com,自动选择
 HOST-SUFFIX,ubisoft.com,自动选择
+
+# ===== XDA.list =====
+#https://yfamilys.com/rule/XDA.list
+HOST-SUFFIX,xda-cdn.com,自动选择
+HOST-SUFFIX,xda-developers.com,自动选择
+HOST-SUFFIX,xdaforums.com,自动选择
+HOST-SUFFIX,xdaimages.com,自动选择
 
 # ===== YouTube.list =====
 #https://yfamilys.com/rule/YouTube.list
