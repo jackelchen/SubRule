@@ -12,3 +12,7 @@ DOMAIN-SUFFIX,doubleclick-cn.net,🛑 全球拦截
 
 #农行
 DOMAIN-SUFFIX,msmp.abchina.com.cn,🛑 全球拦截
+
+#起点
+DOMAIN-SUFFIX,pgdt.gdtimg.com,🛑 全球拦截
+DOMAIN-SUFFIX,pgdt.gtimg.cn,🛑 全球拦截
