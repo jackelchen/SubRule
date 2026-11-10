@@ -4,7 +4,7 @@ Convert Clash rule lists (filter/*.list) to a Quantumult X filter list.
 Output : <repo>/output/quanx.list
 Config : <repo>/scripts/quanx/policy_map.json
 
-同时维护 policy_map.json：新增非 0 开头的 list 时，自动把缺失的策略名补成默认映射。
+policy_map.json 只保留需要特殊映射的条目（值 ≠ default_policy），自动 list 缺省用 default_policy。
 """
 import json
 import sys
@@ -51,6 +51,11 @@ def load_config(data):
     }
 
 
+def _emit_policy(rule_policy: str, cfg: dict) -> str:
+    """把 Clash 策略名转为 QX 策略组名；未命中的用 default_policy。"""
+    return cfg["policy_map"].get(rule_policy, cfg["default_policy"])
+
+
 def convert_line(raw, cfg):
     """Return converted line, or None to drop, or a '# ...' comment."""
     line = raw.strip()
@@ -82,7 +87,7 @@ def convert_line(raw, cfg):
     policy = parts[2]
     extra = parts[3:]
 
-    qx_policy = cfg["policy_map"].get(policy, cfg["default_policy"])
+    qx_policy = _emit_policy(policy, cfg)
 
     out = f"{qx_type},{value},{qx_policy}"
     if extra:
@@ -96,23 +101,20 @@ def convert_file(path, cfg):
             yield convert_line(raw, cfg)
 
 
-def update_policy_map(data, stems: list[str]) -> None:
-    """把缺失的策略名补进 policy_map：手动项保持原顺序，非 0 条目按字母序、缺省用 default_policy。"""
+def tidy_policy_map(data, stems: list[str]) -> None:
+    """整理 policy_map：自动 list（非 0 开头）条目如果等于 default_policy 则删除。
+
+    只保留真正需要手动定制的条目：0 开头系统组 + 值 ≠ default_policy 的自动 list。
+    """
     p_map = data.setdefault("policy_map", {})
     default = data.get("default_policy", "自动选择")
-
     auto = set(stems)
-    # 手动项：当前存在但不在自动集合里的 key，保留原顺序与值
-    manual_keys = [k for k in p_map if k not in auto]
 
-    out = {}
-    for k in manual_keys:
-        out[k] = p_map[k]
-    for s in stems:
-        out[s] = p_map.get(s, default)
+    # 保留非自动条目 + 值 ≠ 默认的自动条目
+    kept = {k: v for k, v in p_map.items() if k not in auto or v != default}
 
-    if out != p_map:
-        data["policy_map"] = out
+    if kept != p_map:
+        data["policy_map"] = kept
         MAP_FILE.write_text(
             json.dumps(data, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
@@ -140,7 +142,7 @@ def main():
         sys.exit(1)
 
     stems = sorted(p.stem for p in files if not p.stem.startswith("0"))
-    update_policy_map(data, stems)
+    tidy_policy_map(data, stems)
     cfg = load_config(data)
 
     out = [
